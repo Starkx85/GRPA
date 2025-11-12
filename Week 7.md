@@ -1,5 +1,183 @@
 # WEEK 7 GRPA
 
+## Numbers 1
+
+```
+def seconds_to_minute_seconds(seconds: int) -> tuple:
+    '''
+    Given an integer representing seconds, return a tuple of (minutes, seconds).
+
+    Arguments:
+    seconds: int - an integer representing the number of seconds.
+
+    Return: tuple - a tuple of (minutes, remaining_seconds).
+    '''
+    # minutes
+    
+    # remaining
+    
+    minutes = seconds // 60
+    
+    remaining = seconds % 60
+    
+    return (minutes, remaining)
+```
+
+## Numbers 2
+
+```
+def create_indexed_dict(items: list) -> dict:
+    '''
+    Given a list of items, create a dictionary with the indices as keys and the items as items.
+    Args:
+        items (list): A list of items.
+    Returns:
+        dict: A dictionary with indices as keys and items as items.
+    '''
+    return {i: item for i, item in enumerate(items)}
+```
+
+## Numbers 3
+
+```
+def manhattan_distance_via_b(a: tuple, b: tuple, c: tuple) -> int:
+    '''
+    Given three points a, b, and c on the Cartesian plane, 
+    calculate the Manhattan distance to go from point a to point c via point b.
+    Manhattan distance is the sum of the absolute differences of their Cartesian coordinates.
+    Args:
+        a (tuple): Coordinates of point a as (x1, y1).
+        b (tuple): Coordinates of point b as (x2, y2).
+        c (tuple): Coordinates of point c as (x3, y3).
+    Returns:
+        int: The Manhattan distance from point a to point c via point b.
+    '''
+    # Distance from a to b
+    distance_a_to_b = abs(a[0] - b[0]) + abs(a[1] - b[1])
+    
+    # Distance from b to c
+    distance_b_to_c = abs(b[0] - c[0]) + abs(b[1] - c[1])
+    
+    # Total distance via b
+    return distance_a_to_b + distance_b_to_c
+```
+
+## Numbers 4
+
+```
+def is_right_triangle_with_even_sides(a: int, b: int, c: int) -> bool:
+    '''
+    Given three side lengths in the increasing 
+    order of length as a, b, and c, where a<=b<=c,
+    check if the given sides are the sides of a right 
+    triangle whose perpendicular sides are of even length.
+    Hint: in a right triangle the square of hypotenuse is the sum of square of other two sides.
+    Arguments:
+    a: int - the first side length
+    b: int - the second side length
+    c: int - the hypotenuse length
+    Return:
+    bool - True if the sides form a right triangle and the perpendicular sides are even, else False
+    '''
+    # Check if it's a right triangle using Pythagorean theorem
+    is_right_triangle = (a * a + b * b == c * c)
+    
+    # Check if both perpendicular sides (a and b) are even
+    both_perpendicular_even = (a % 2 == 0) and (b % 2 == 0)
+    
+    # Return True only if both conditions are met
+    return is_right_triangle and both_perpendicular_even
+```
+
+## Strings 1
+
+```
+def is_odd_indices_alpha_and_even_indices_digits(string: str) -> bool:
+    '''
+    Given a string, check if all the odd indices are alphabets and the even indices are digits.
+    Note: indices starts from 0.
+    Arguments:
+    string: str - the input string
+    Return:
+    bool - True if all odd indices are alphabets and even indices are digits, else False
+    '''
+    for i in range(len(string)):
+        if i % 2 == 0:  # Even index (0, 2, 4, ...)
+            if not string[i].isdigit():
+                return False
+        else:  # Odd index (1, 3, 5, ...)
+            if not string[i].isalpha():
+                return False
+    
+    return True
+```
+
+## Strings 2
+
+```
+def has_a_in_second_half(s: str) -> bool:
+    '''
+    Given an even-length string, check if the second half contains 
+    the character "a" or "A".
+    Arguments:
+    s: str - an even-length string.
+    Return: bool - True if "a" or "A" is found in the second half, else False.
+    '''
+    # Get the second half of the string
+    mid_point = len(s) // 2
+    second_half = s[mid_point:]
+    
+    # Check if 'a' or 'A' is in the second half
+    return 'a' in second_half or 'A' in second_half
+```
+
+## Strings 3
+
+```
+def most_occuring_first_letter(passage: str) -> str:
+    '''
+    Returns the letter which occurs most frequently 
+    as the first letter of any word.(case insensitive)
+    Args:
+        passage (str): A multi-line string representing the passage.
+    Returns:
+        str: The most frequently occurring first letter in lowercase.
+    '''
+    # Dictionary to count first letters
+    first_letter_count = {}
+    
+    # Split the passage into words
+    words = passage.split()
+    
+    # Count first letters
+    for word in words:
+        if word:  # Check if word is not empty
+            first_letter = word[0].lower()  # Get first letter in lowercase
+            first_letter_count[first_letter] = first_letter_count.get(first_letter, 0) + 1
+    
+    # Find the letter with maximum count
+    most_frequent_letter = max(first_letter_count, key=first_letter_count.get)
+    
+    return most_frequent_letter
+```
+
+## Strings 4
+
+```
+def remove_edges(s: str) -> str:
+    '''
+    Return a new string with the first two and last two 
+    characters removed from the given string. 
+    Arguments:
+    s: str - a string.
+    Return: str - a string with first and last two characters removed.
+    '''
+    if len(s) < 4:
+        return ""
+    
+    return s[2:-2]
+```
+
 ## Collection 1
 
 ```
@@ -225,175 +403,4 @@ def num_to_word(num: int) -> str:
     return '-'.join(words)
 ```
 
-## Numbers 1
-
-```
-def seconds_to_minute_seconds(seconds: int) -> tuple:
-    '''
-    Given an integer representing seconds, return a tuple of (minutes, seconds).
-
-    Arguments:
-    seconds: int - an integer representing the number of seconds.
-
-    Return: tuple - a tuple of (minutes, remaining_seconds).
-    '''
-    minutes = seconds // 60
-    remaining_seconds = seconds % 60
-    return (minutes, remaining_seconds)
-```
-
-## Numbers 2
-
-```
-def create_indexed_dict(items: list) -> dict:
-    '''
-    Given a list of items, create a dictionary with the indices as keys and the items as items.
-    Args:
-        items (list): A list of items.
-    Returns:
-        dict: A dictionary with indices as keys and items as items.
-    '''
-    return {i: item for i, item in enumerate(items)}
-```
-
-## Numbers 3
-
-```
-def manhattan_distance_via_b(a: tuple, b: tuple, c: tuple) -> int:
-    '''
-    Given three points a, b, and c on the Cartesian plane, 
-    calculate the Manhattan distance to go from point a to point c via point b.
-    Manhattan distance is the sum of the absolute differences of their Cartesian coordinates.
-    Args:
-        a (tuple): Coordinates of point a as (x1, y1).
-        b (tuple): Coordinates of point b as (x2, y2).
-        c (tuple): Coordinates of point c as (x3, y3).
-    Returns:
-        int: The Manhattan distance from point a to point c via point b.
-    '''
-    # Distance from a to b
-    distance_a_to_b = abs(a[0] - b[0]) + abs(a[1] - b[1])
-    
-    # Distance from b to c
-    distance_b_to_c = abs(b[0] - c[0]) + abs(b[1] - c[1])
-    
-    # Total distance via b
-    return distance_a_to_b + distance_b_to_c
-```
-
-## Numbers 4
-
-```
-def is_right_triangle_with_even_sides(a: int, b: int, c: int) -> bool:
-    '''
-    Given three side lengths in the increasing 
-    order of length as a, b, and c, where a<=b<=c,
-    check if the given sides are the sides of a right 
-    triangle whose perpendicular sides are of even length.
-    Hint: in a right triangle the square of hypotenuse is the sum of square of other two sides.
-    Arguments:
-    a: int - the first side length
-    b: int - the second side length
-    c: int - the hypotenuse length
-    Return:
-    bool - True if the sides form a right triangle and the perpendicular sides are even, else False
-    '''
-    # Check if it's a right triangle using Pythagorean theorem
-    is_right_triangle = (a * a + b * b == c * c)
-    
-    # Check if both perpendicular sides (a and b) are even
-    both_perpendicular_even = (a % 2 == 0) and (b % 2 == 0)
-    
-    # Return True only if both conditions are met
-    return is_right_triangle and both_perpendicular_even
-```
-
-## Strings 1
-
-```
-def is_odd_indices_alpha_and_even_indices_digits(string: str) -> bool:
-    '''
-    Given a string, check if all the odd indices are alphabets and the even indices are digits.
-    Note: indices starts from 0.
-    Arguments:
-    string: str - the input string
-    Return:
-    bool - True if all odd indices are alphabets and even indices are digits, else False
-    '''
-    for i in range(len(string)):
-        if i % 2 == 0:  # Even index (0, 2, 4, ...)
-            if not string[i].isdigit():
-                return False
-        else:  # Odd index (1, 3, 5, ...)
-            if not string[i].isalpha():
-                return False
-    
-    return True
-```
-
-## Strings 2
-
-```
-def has_a_in_second_half(s: str) -> bool:
-    '''
-    Given an even-length string, check if the second half contains 
-    the character "a" or "A".
-    Arguments:
-    s: str - an even-length string.
-    Return: bool - True if "a" or "A" is found in the second half, else False.
-    '''
-    # Get the second half of the string
-    mid_point = len(s) // 2
-    second_half = s[mid_point:]
-    
-    # Check if 'a' or 'A' is in the second half
-    return 'a' in second_half or 'A' in second_half
-```
-
-## Strings 3
-
-```
-def most_occuring_first_letter(passage: str) -> str:
-    '''
-    Returns the letter which occurs most frequently 
-    as the first letter of any word.(case insensitive)
-    Args:
-        passage (str): A multi-line string representing the passage.
-    Returns:
-        str: The most frequently occurring first letter in lowercase.
-    '''
-    # Dictionary to count first letters
-    first_letter_count = {}
-    
-    # Split the passage into words
-    words = passage.split()
-    
-    # Count first letters
-    for word in words:
-        if word:  # Check if word is not empty
-            first_letter = word[0].lower()  # Get first letter in lowercase
-            first_letter_count[first_letter] = first_letter_count.get(first_letter, 0) + 1
-    
-    # Find the letter with maximum count
-    most_frequent_letter = max(first_letter_count, key=first_letter_count.get)
-    
-    return most_frequent_letter
-```
-
-## Strings 4
-
-```
-def remove_edges(s: str) -> str:
-    '''
-    Return a new string with the first two and last two 
-    characters removed from the given string. 
-    Arguments:
-    s: str - a string.
-    Return: str - a string with first and last two characters removed.
-    '''
-    if len(s) < 4:
-        return ""
-    
-    return s[2:-2]
-```
 
